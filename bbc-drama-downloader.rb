@@ -4,10 +4,10 @@ require 'simple-rss'
 
 scheduler = Rufus::Scheduler.new
 bbc_drama_feed_url = 'http://www.bbc.co.uk/programmes/p02nrv5m/episodes/downloads.rss'
-save_dir = "/Users/mszczap"
+save_dir = ARGV[0]
 
 def fetch_feed(save_dir, feed_url)
-  puts("Fetching feed:" + feed_url)
+  puts("Fetching feed: " + feed_url)
 
   rss = SimpleRSS.parse open(feed_url)
   firstItem = rss.items[0]
@@ -31,7 +31,7 @@ def store_file(url, saveFilePath)
   puts("Downloaded: " + saveFilePath)
 end
 
-if ARGV[0] == '-d'
+if ARGV[1] == '-d'
   fetch_feed(save_dir, bbc_drama_feed_url)
   exit 0
 end
