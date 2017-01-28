@@ -50,8 +50,3 @@ scheduler.cron('5 0 * * *') do
 end
 
 scheduler.join
-
-# todo
-# 1. download all from podcast
-# 2. download only the ones that we do not have
-# 3. create subdir per podcast
