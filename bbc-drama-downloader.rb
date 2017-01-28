@@ -20,11 +20,16 @@ def process_item(save_dir, item)
   title_under = title.tr(" ", "_")
   file_name = "#{title_under}.mp3"
   store_filename = "#{save_dir}/#{file_name}"
+  puts item
 
   store_file(mp3_link, store_filename)
 end
 
 def store_file(url, saveFilePath)
+  if (File.file?(saveFilePath))
+    puts "File already exists: " + saveFilePath
+    return
+  end
   puts("Downloading: " + saveFilePath)
   File.open(saveFilePath, "wb") do |saved_file|
     open(url, "rb") do |read_file|
