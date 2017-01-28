@@ -20,7 +20,6 @@ def process_item(save_dir, item)
   title_under = title.tr(" ", "_")
   file_name = "#{title_under}.mp3"
   store_filename = "#{save_dir}/#{file_name}"
-  puts item
 
   store_file(mp3_link, store_filename)
 end
