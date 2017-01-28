@@ -10,9 +10,13 @@ def fetch_feed(save_dir, feed_url)
   puts("Fetching feed: " + feed_url)
 
   rss = SimpleRSS.parse open(feed_url)
-  firstItem = rss.items[0]
-  title = firstItem[:title]
-  mp3_link = firstItem[:media_content_url]
+  items = rss.items
+  items.each { |item| process_item(save_dir, item) }
+end
+
+def process_item(save_dir, item)
+  title = item[:title]
+  mp3_link = item[:media_content_url]
   title_under = title.tr(" ", "_")
   file_name = "#{title_under}.mp3"
   store_filename = "#{save_dir}/#{file_name}"
@@ -23,7 +27,6 @@ end
 def store_file(url, saveFilePath)
   puts("Downloading: " + saveFilePath)
   File.open(saveFilePath, "wb") do |saved_file|
-    # the following "open" is provided by open-uri
     open(url, "rb") do |read_file|
       saved_file.write(read_file.read)
     end
@@ -36,9 +39,14 @@ if ARGV[1] == '-d'
   exit 0
 end
 
-# every friday at noon
-scheduler.cron('0 0 * * FRI') do
+# 5 mins after midnight
+scheduler.cron('5 0 * * *') do
   fetch_feed(save_dir, bbc_drama_feed_url)
 end
 
 scheduler.join
+
+# todo
+# 1. download all from podcast
+# 2. download only the ones that we do not have
+# 3. create subdir per podcast
