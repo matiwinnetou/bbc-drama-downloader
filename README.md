@@ -5,5 +5,5 @@ Unfortunately BBC decided to delete episodes after 2 weeks
 and I tend to forget on certain weeks to download it. I usually come back to them and listen to them later.
 
 ## Usage
-- ruby bbc-drama-downloader.rb /home/mati (refresh 5 mins after midnight everynight)
-- ruby bbc-drama-downloader.rb /home/mati -D (download only)
+- ruby bbc-drama-downloader.rb /home/mati <download_directory> (refresh 5 mins after midnight everynight)
+- ruby bbc-drama-downloader.rb /home/mati <download_directory> -D (download only)
