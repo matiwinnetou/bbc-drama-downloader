@@ -43,7 +43,7 @@ if ARGV[1] == '-d'
   exit 0
 end
 
-# 5 mins after midnight
+# 5 mins after midnight - everyday
 scheduler.cron('5 0 * * *') do
   fetch_feed(save_dir, bbc_drama_feed_url)
 end
