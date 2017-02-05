@@ -78,7 +78,7 @@ def process_item(save_dir, item)
 end
 
 def store_file(url, saveFilePath)
-  if (File.file?(saveFilePath))
+  if File.file?(saveFilePath)
     $log.warn("File already exists: #{saveFilePath}")
     return
   end
