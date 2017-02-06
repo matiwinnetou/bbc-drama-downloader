@@ -26,7 +26,7 @@ $log = create_logger
 $options = {}
 $options[:immediate] = false
 $options[:save_dir] = Dir.pwd
-$options[:cron_entry] = '5 * * * *' # 5 mins after midnight - everyday
+$options[:cron_entry] = '5 0 * * *' # 5 mins after midnight - everyday
 
 $opt_parser = OptionParser.new do |opt|
   opt.banner = "Usage: ruby bbc-drama-downloader.rb [OPTIONS]"
